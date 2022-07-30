@@ -16,11 +16,9 @@
   margin-right: 4px;
   filter: invert(100%) sepia(100%) saturate(8%) hue-rotate(155deg) brightness(101%) contrast(101%);
 }
-
-/* .icon-nav{
-  font-size: 25px;
-  margin: 0 30px;
-} */
+.categories{
+  margin-left: 10px;
+}
 
 
 
