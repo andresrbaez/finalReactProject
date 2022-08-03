@@ -36,6 +36,10 @@
   justify-content: center;
   align-items: center;
 }
+.filter-btn{
+  display: flex;
+  justify-content: end;
+}
 
 
 
@@ -89,6 +93,8 @@
   position: absolute;
   right: 20px;
   bottom: 20px;
+  align-content: center;
+  align-items: center;
 }
 
 

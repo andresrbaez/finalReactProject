@@ -14,12 +14,9 @@ import {
   Form,
   InputGroup,
   ListGroup,
-  Accordion
+  Accordion,
 } from "react-bootstrap";
 import axios from "axios";
-
-
-
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -48,6 +45,28 @@ const Home = () => {
     <div>
       <Row>
         <Col lg={3}>
+          <Accordion defaultActiveKey="0">
+            <Accordion.Item eventKey="0">
+              <Accordion.Header>Price</Accordion.Header>
+              <Accordion.Body>
+                <InputGroup className="mb-3">
+                <Form.Label htmlFor="basic-url" style={{width: "50px"}}>From</Form.Label>
+                  <InputGroup.Text>$</InputGroup.Text>
+                  <Form.Control aria-label="Amount (to the nearest dollar)" />
+                  <InputGroup.Text>.00</InputGroup.Text>
+                </InputGroup>
+                <InputGroup className="mb-3">
+                <Form.Label htmlFor="basic-url" style={{width: "50px"}}>To</Form.Label>
+                  <InputGroup.Text>$</InputGroup.Text>
+                  <Form.Control aria-label="Amount (to the nearest dollar)" />
+                  <InputGroup.Text>.00</InputGroup.Text>
+                </InputGroup>
+                <div className="filter-btn">
+                  <button type="button" className="btn btn-primary">Filter price</button>
+                </div>
+              </Accordion.Body>
+            </Accordion.Item>
+          </Accordion>
           <Accordion defaultActiveKey="0">
             <Accordion.Item eventKey="0">
               <Accordion.Header>Categories</Accordion.Header>
@@ -81,7 +100,7 @@ const Home = () => {
               variant="outline-dark"
               onClick={() => dispatch(filterProductThunk(searchValue))}
               id="button-addon1"
-              style={{ background: "#2c3e50", color: "#fff"}}
+              style={{ background: "#2c3e50", color: "#fff" }}
             >
               Search
             </Button>
@@ -91,7 +110,7 @@ const Home = () => {
               <Col key={product.id}>
                 <Card
                   onClick={() => navigate(`/products/${product.id}`)}
-                  style={{ cursor: "pointer", minHeight: "360px"}}
+                  style={{ cursor: "pointer", minHeight: "360px" }}
                 >
                   <Card.Img
                     variant="top"

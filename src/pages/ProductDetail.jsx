@@ -2,12 +2,15 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProductsThunk } from "../store/slices/products.slice";
 import { Card, Carousel, Col, Row } from "react-bootstrap";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+
 
 const ProductDetail = () => {
   const allProducts = useSelector((state) => state.products);
   const [productDetail, setProductDetail] = useState({});
   const [suggestedProducts, setSuggestedProducts] = useState([]);
+
+  const navigate = useNavigate();
 
   const { id } = useParams();
 
@@ -38,7 +41,7 @@ const ProductDetail = () => {
       <p>{productDetail?.description}</p> */}
 
       <Row>
-        <Col lg={3}>
+        <Col lg={6}>
           <Carousel>
             <Carousel.Item>
               <img
@@ -105,14 +108,6 @@ const ProductDetail = () => {
               </Col>
             ))}
           </Row>
-          {/* <ul className="ul-suggested">
-            {suggestedProducts.map((products) => (
-              <div key={products.id} className="suggested-display">
-                <img className="img-suggested" src={products.productImgs} alt="" />
-                <p>{products.title}</p>
-              </div>
-            ))}
-          </ul> */}
         </div>
       </div>
     </div>
