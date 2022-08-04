@@ -26,7 +26,7 @@ const ProductDetail = () => {
       (productItem) => productItem.category.id === productsFound.category.id
     );
     setSuggestedProducts(filteredProducts);
-  }, [allProducts]);
+  }, [allProducts, id]);
 
   useEffect(() => {
     dispatch(getProductsThunk());

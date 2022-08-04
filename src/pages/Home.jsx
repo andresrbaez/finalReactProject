@@ -24,9 +24,6 @@ const Home = () => {
   const [searchValue, setSearchValue] = useState("");
   const [categories, setCategories] = useState([]);
 
-  //   const submit = () => {
-  //     dispatch(filterProductThunk(searchValue))
-  //   }
 
   const products = useSelector((state) => state.products);
 
