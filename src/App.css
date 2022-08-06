@@ -97,6 +97,30 @@
   align-items: center;
 }
 
+.purchases-info{
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: center;
+  margin: 15px;
+  width: auto;
+}
+.purchases-cards{
+  width: 700px;
+}
+.purchases-space{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.purchases-title{
+  width: 700px;
+  margin-bottom: 20px;
+}
+.circle-font{
+  font-size: 7px;
+  color: #2c3e50;
+  margin: 0 5px;
+}
 
 
 
