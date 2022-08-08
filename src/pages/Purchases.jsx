@@ -9,50 +9,6 @@ const Purchases = () => {
   const purchases = useSelector((state) => state.purchases);
 
 
-
-
-
-
-
-//   let datePurchases = purchases[0]?.createdAt
-
-//   console.log(datePurchases.toString());
-//   console.log(purchases[0]?.createdAt);
-
-// 2022-08-01T16:57:18.729Z
-
-
-
-    // function formatDate(string){
-    //     var options = { year: 'numeric', month: 'long', day: 'numeric' };
-    //     return new Date(string).toLocaleDateString([],options);
-    // }
-    // var dateString = "2018-05-18T04:00:00.000Z"
-    // document.getElementById("results").innerHTML = formatDate(dateString);
-
-    
-
-    const formatDate = (string) => {
-        var options = { year: 'numeric', month: 'long', day: 'numeric' };
-        return new Date(string).toLocaleDateString([],options);
-    } 
-
-    // let datePurchases = '2022-08-01T16:57:18.729Z'
-    let datePurchases = purchases[20]?.createdAt
-    // console.log(formatDate(datePurchases));
-
-
-    // let datePurchases = new Date('2022-08-01T16:57:18.729Z').toLocaleString();
-    console.log(purchases);
-
-
-
-
-
-
-
-
-
   useEffect(() => {
     dispatch(getPurchasesThunk());
   }, []);
@@ -68,7 +24,7 @@ const Purchases = () => {
             {purchases.map((purchase) => (
                     <Card key={purchase.id} style={{margin: "10px 0px"}}>
                     {/* <Card.Header as="h5">{purchase?.updatedAt}</Card.Header> */}
-                    <Card.Header as="h5">{(new Date(purchase?.updatedAt).toDateString())}</Card.Header>
+                    <Card.Header as="h5">{formatDate(purchase?.createdAt)}</Card.Header>
                     <Card.Body style={{padding: "15px"}}>
                             {/* <Card.Title>{purchase?.cart?.products[0]?.title}</Card.Title> */}
                             <div className="purchases-info">

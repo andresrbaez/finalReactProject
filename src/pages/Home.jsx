@@ -27,6 +27,11 @@ const Home = () => {
 
   const products = useSelector((state) => state.products);
 
+  const search = () => {
+    dispatch(filterProductThunk(searchValue));
+    setSearchValue("")
+  }
+
   useEffect(() => {
     dispatch(getProductsThunk());
     dispatch(filterProductThunk());
@@ -69,6 +74,12 @@ const Home = () => {
               <Accordion.Header>Categories</Accordion.Header>
               <Accordion.Body>
                 <ListGroup variant="flush">
+                <ListGroup.Item
+                      onClick={() => dispatch(getProductsThunk())}
+                      style={{ cursor: "pointer" }}
+                    >
+                      All
+                    </ListGroup.Item>
                   {categories.map((category) => (
                     <ListGroup.Item
                       key={category.id}
@@ -95,7 +106,7 @@ const Home = () => {
             />
             <Button
               variant="outline-dark"
-              onClick={() => dispatch(filterProductThunk(searchValue))}
+              onClick={search}
               id="button-addon1"
               style={{ background: "#2c3e50", color: "#fff" }}
             >
