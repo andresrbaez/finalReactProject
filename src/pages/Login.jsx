@@ -1,30 +1,101 @@
+import axios from "axios";
 import React from "react";
-import { Card, Button, Form } from "react-bootstrap";
+import { Card, Button, Form, Modal } from "react-bootstrap";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const { register, handleSubmit, reset } = useForm();
+
+  const navigate = useNavigate();
+
+  // const [modalShow, setModalShow] = React.useState(false);
+
+  
+  const submit = (data, props) => {
+    // alert("Hice submit")
+    // console.log(data);
+    axios
+      .post(
+        `https://ecommerce-api-react.herokuapp.com/api/v1/users/login`,
+        data
+      )
+      .then((res) => {
+        navigate("/")
+        localStorage.setItem('token', res.data.data.token)
+        console.log(res.data.data.token);
+
+    })
+      .catch((error) => {
+        if (error.response.status === 404) {
+          alert("Credenciales inválidas");
+          // return (
+          //   <>
+          //     <Modal
+          //       {...props}
+          //       size="lg"
+          //       aria-labelledby="contained-modal-title-vcenter"
+          //       centered
+          //     >
+          //       <Modal.Header closeButton>
+          //         <Modal.Title id="contained-modal-title-vcenter">
+          //           Modal heading
+          //         </Modal.Title>
+          //       </Modal.Header>
+          //       <Modal.Body>
+          //         <h4>Centered Modal</h4>
+          //         <p>
+          //           Cras mattis consectetur purus sit amet fermentum. Cras justo
+          //           odio, dapibus ac facilisis in, egestas eget quam. Morbi leo
+          //           risus, porta ac consectetur ac, vestibulum at eros.
+          //         </p>
+          //       </Modal.Body>
+          //       <Modal.Footer>
+          //         <Button onClick={props.onHide}>Close</Button>
+          //       </Modal.Footer>
+          //     </Modal>
+          //   </>
+          // );
+        }
+      });
+    reset({
+      email: "",
+      password: "",
+    });
+  };
+
   return (
     <div className="login-card">
-      <Card style={{ width: "30rem", height: "auto", boxShadow: "0 2px 4px #2224261f,0 2px 10px #22242626" }}>
+      <Card
+        style={{
+          width: "30rem",
+          height: "auto",
+          boxShadow: "0 2px 4px #2224261f,0 2px 10px #22242626",
+        }}
+      >
         <Card.Text style={{ padding: "30px 20px 0px 20px", fontSize: "26px" }}>
           <strong>Welcome! Enter your email and password to continue</strong>
         </Card.Text>
         <div className="test-data">
-            <b className="b-data">Test data</b>
-            <div className="field">
-            <i className='bx bxs-envelope margin-icon'></i>
-                example@example.com
-            </div>
-            <div className="field">
-            <i className='bx bxs-lock-alt margin-icon'></i>
-                example1234
-            </div>
-
+          <b className="b-data">Test data</b>
+          <div className="field">
+            <i className="bx bxs-envelope margin-icon"></i>
+            mason@gmail.com
+          </div>
+          <div className="field">
+            <i className="bx bxs-lock-alt margin-icon"></i>
+            mason1234
+          </div>
         </div>
         <Card.Body>
-          <Form>
+          <Form onSubmit={handleSubmit(submit)}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email</Form.Label>
-              <Form.Control type="email" placeholder="Enter email" />
+              <Form.Control
+                type="email"
+                placeholder="Enter email"
+                {...register("email")}
+              />
               <Form.Text className="text-muted">
                 We'll never share your email with anyone else.
               </Form.Text>
@@ -32,9 +103,16 @@ const Login = () => {
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
               <Form.Label>Password</Form.Label>
-              <Form.Control type="password" placeholder="Password" />
+              <Form.Control
+                type="password"
+                placeholder="Password"
+                {...register("password")}
+              />
             </Form.Group>
-            <Button variant="primary" type="submit">
+            <Button
+              variant="primary"
+              type="submit"
+            >
               Submit
             </Button>
           </Form>
