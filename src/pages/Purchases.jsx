@@ -8,30 +8,6 @@ const Purchases = () => {
 
   const purchases = useSelector((state) => state.purchases);
 
-
-
-
-
-
-
-//   let datePurchases = purchases[0]?.createdAt
-
-//   console.log(datePurchases.toString());
-//   console.log(purchases[0]?.createdAt);
-
-// 2022-08-01T16:57:18.729Z
-
-
-
-    // function formatDate(string){
-    //     var options = { year: 'numeric', month: 'long', day: 'numeric' };
-    //     return new Date(string).toLocaleDateString([],options);
-    // }
-    // var dateString = "2018-05-18T04:00:00.000Z"
-    // document.getElementById("results").innerHTML = formatDate(dateString);
-
-    
-
     const formatDate = (string) => {
         var options = { year: 'numeric', month: 'long', day: 'numeric' };
         return new Date(string).toLocaleDateString("en-US", options);
@@ -43,7 +19,7 @@ const Purchases = () => {
 
 
     // let datePurchases = new Date('2022-08-01T16:57:18.729Z').toLocaleString();
-    console.log(purchases);
+    console.log(formatDate);
 
 
 

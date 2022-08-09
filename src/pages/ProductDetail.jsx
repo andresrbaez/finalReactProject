@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProductsThunk } from "../store/slices/products.slice";
-import { Card, Carousel, Col, Row } from "react-bootstrap";
+import { Button, Card, Carousel, Col, Row, ButtonGroup } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 
 
@@ -32,14 +32,9 @@ const ProductDetail = () => {
     dispatch(getProductsThunk());
   }, []);
 
-  // console.log(productDetail);
 
   return (
     <div>
-      {/* <h1>{productDetail?.title}</h1>
-      <img src={productDetail?.productImgs} style={{ width: "200px" }} />
-      <p>{productDetail?.description}</p> */}
-
       <Row>
         <Col lg={6}>
           <Carousel>
@@ -71,10 +66,30 @@ const ProductDetail = () => {
         </Col>
         <Col>
           <h1>{productDetail?.title}</h1>
-          <strong>Price: </strong>
-          {productDetail?.price}
-          <h4>Description</h4>
-          <p>{productDetail?.description}</p>
+          {/* <h4>Description</h4> */}
+          <p style={{textAlign: "justify"}}>{productDetail?.description}</p>
+          <div className="container-price">
+            <div>
+              <small  className="small-txt">Price: </small>
+              <div>
+                $ {productDetail?.price}
+              </div>
+            </div>
+            <div className="quantity-btn">
+              <small className="small-txt">Quantity</small>
+              <div>
+                <ButtonGroup size="sm">
+                  <Button style={{fontSize: "18px"}}> <i className='bx bx-minus'></i> </Button>
+                  <div className="quantity-box">
+                    <small>
+                      1
+                    </small>
+                  </div>
+                  <Button style={{fontSize: "18px"}}> <i className='bx bx-plus'></i> </Button>
+                </ButtonGroup>
+              </div>
+            </div>
+          </div>
         </Col>
       </Row>
       <div>
@@ -93,6 +108,11 @@ const ProductDetail = () => {
                     variant="top"
                     src={product.productImgs}
                     className="img-products"
+                  />
+                  <Card.Img
+                    variant="top"
+                    src={product.productImgs[1]}
+                    className="img-products-hover"
                   />
                   <Card.Body>
                     <Card.Title>{product.title}</Card.Title>

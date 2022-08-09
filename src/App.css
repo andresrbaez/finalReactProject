@@ -3,6 +3,23 @@
   height: 200px;
   padding: 15px;
 }
+.img-products-hover{
+  object-fit: contain;
+  height: 200px;
+  padding: 15px;
+
+  display: block;
+  margin: 0 auto;
+}
+.img-products-hover{
+  background: #fff;
+  opacity: 0;
+  position: absolute;
+  transition: .8s;
+}
+.img-products-hover:hover{
+  opacity: 1;
+}
 .a-decoration{
   /* text-decoration: none; */
   text-decoration: none;
@@ -39,6 +56,32 @@
 .filter-btn{
   display: flex;
   justify-content: end;
+}
+
+
+
+.quantity-btn{
+  display: flex;
+  flex-direction: column;
+}
+.container-price{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 50px;
+}
+.small-txt{
+  margin: 10px 0;
+}
+.quantity-box{
+  width: 40px;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid rgba(128, 128, 128, 0.403);
+  border-bottom: 1px solid rgba(128, 128, 128, 0.403)
+
 }
 
 

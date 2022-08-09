@@ -43,11 +43,13 @@ const Home = () => {
       .then((res) => setCategories(res.data.data.categories));
   }, []);
 
+  console.log(products[0]?.productImgs[1]);
+
   return (
     <div>
       <Row>
         <Col lg={3}>
-          <Accordion defaultActiveKey="0">
+          <Accordion defaultActiveKey="0" style={{margin: "10px 0"}}>
             <Accordion.Item eventKey="0">
               <Accordion.Header>Price</Accordion.Header>
               <Accordion.Body>
@@ -69,7 +71,7 @@ const Home = () => {
               </Accordion.Body>
             </Accordion.Item>
           </Accordion>
-          <Accordion defaultActiveKey="0">
+          <Accordion defaultActiveKey="0" style={{margin: "10px 0"}}>
             <Accordion.Item eventKey="0">
               <Accordion.Header>Categories</Accordion.Header>
               <Accordion.Body>
@@ -124,6 +126,11 @@ const Home = () => {
                     variant="top"
                     src={product.productImgs}
                     className="img-products"
+                  />
+                  <Card.Img
+                    variant="top"
+                    src={product.productImgs[1]}
+                    className="img-products-hover"
                   />
                   <Card.Body>
                     <Card.Title>{product.title}</Card.Title>
