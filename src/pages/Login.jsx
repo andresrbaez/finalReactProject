@@ -1,6 +1,6 @@
 import axios from "axios";
-import React from "react";
-import { Card, Button, Form, Modal } from "react-bootstrap";
+import React, { useState } from "react";
+import { Card, Button, Form, Modal, InputGroup } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
@@ -9,9 +9,12 @@ const Login = () => {
 
   const navigate = useNavigate();
 
+  const [isVisible, setIsVisible] = useState(false);
+
+  const toggleIsVisible = () => setIsVisible(!isVisible);
+
   // const [modalShow, setModalShow] = React.useState(false);
 
-  
   const submit = (data, props) => {
     // alert("Hice submit")
     // console.log(data);
@@ -21,11 +24,10 @@ const Login = () => {
         data
       )
       .then((res) => {
-        navigate("/")
-        localStorage.setItem('token', res.data.data.token)
+        navigate("/");
+        localStorage.setItem("token", res.data.data.token);
         console.log(res.data.data.token);
-
-    })
+      })
       .catch((error) => {
         if (error.response.status === 404) {
           alert("Credenciales inválidas");
@@ -103,16 +105,53 @@ const Login = () => {
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
               <Form.Label>Password</Form.Label>
-              <Form.Control
-                type="password"
+              {/* <Form.Control
+                // type="password"
+                type={isVisible ? "text" : "password"}
                 placeholder="Password"
                 {...register("password")}
-              />
+              /> */}
+              <InputGroup className="mb-3">
+                <Form.Control
+                  // type="password"
+                  type={isVisible ? "text" : "password"}
+                  placeholder="Password"
+                  {...register("password")}
+                />
+                <InputGroup.Text 
+                id="basic-addon2" 
+                onClick={toggleIsVisible} 
+                style={{cursor: "pointer", backgroundColor: "white", color: "gray"}}
+                >
+                  <div
+                    type="checkbox"
+                    className="toggle-password"
+                  >
+                    {isVisible === false ? (
+                      <i className="bx bx-show icon-password"></i>
+                    ) : (
+                      <i className="bx bx-hide icon-password"></i>
+                    )}
+                  </div>
+                </InputGroup.Text>
+              </InputGroup>
+              {/* <div>
+                <div 
+                type="checkbox" 
+                onClick={toggleIsVisible}
+                className="toggle-password"
+                >
+                  {
+                  (isVisible === false) ? (
+                   <i className='bx bx-show'></i>
+                   ) : (
+                     <i className='bx bx-hide'></i>
+                      )
+                  }
+                </div>
+              </div> */}
             </Form.Group>
-            <Button
-              variant="primary"
-              type="submit"
-            >
+            <Button variant="primary" type="submit">
               Submit
             </Button>
           </Form>

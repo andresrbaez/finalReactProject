@@ -84,6 +84,21 @@
 
 }
 
+.toggle-password{
+  /* cursor: pointer; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.icon-password{
+  font-size: 20px;
+}
+
+
+
+
+
 
 
 

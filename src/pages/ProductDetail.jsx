@@ -16,6 +16,16 @@ const ProductDetail = () => {
 
   const dispatch = useDispatch();
 
+  const [ counter, setCounter ] = useState(1)
+
+  const increment = () => {
+    setCounter(counter+1)
+    
+  }
+  const decrement = () => {
+    setCounter(counter-1)
+  }
+
   useEffect(() => {
     const productsFound = allProducts.find(
       (productItem) => productItem.id === Number(id)
@@ -79,13 +89,23 @@ const ProductDetail = () => {
               <small className="small-txt">Quantity</small>
               <div>
                 <ButtonGroup size="sm">
-                  <Button style={{fontSize: "18px"}}> <i className='bx bx-minus'></i> </Button>
+                  <Button 
+                  style={{fontSize: "18px"}}
+                  onClick={decrement}
+                  > 
+                    <i className='bx bx-minus'></i> 
+                  </Button>
                   <div className="quantity-box">
                     <small>
-                      1
+                      {counter}
                     </small>
                   </div>
-                  <Button style={{fontSize: "18px"}}> <i className='bx bx-plus'></i> </Button>
+                  <Button 
+                  style={{fontSize: "18px"}}
+                  onClick={increment}
+                  > 
+                    <i className='bx bx-plus'></i> 
+                  </Button>
                 </ButtonGroup>
               </div>
             </div>
