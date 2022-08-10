@@ -105,15 +105,8 @@ const Login = () => {
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
               <Form.Label>Password</Form.Label>
-              {/* <Form.Control
-                // type="password"
-                type={isVisible ? "text" : "password"}
-                placeholder="Password"
-                {...register("password")}
-              /> */}
               <InputGroup className="mb-3">
                 <Form.Control
-                  // type="password"
                   type={isVisible ? "text" : "password"}
                   placeholder="Password"
                   {...register("password")}
@@ -135,24 +128,9 @@ const Login = () => {
                   </div>
                 </InputGroup.Text>
               </InputGroup>
-              {/* <div>
-                <div 
-                type="checkbox" 
-                onClick={toggleIsVisible}
-                className="toggle-password"
-                >
-                  {
-                  (isVisible === false) ? (
-                   <i className='bx bx-show'></i>
-                   ) : (
-                     <i className='bx bx-hide'></i>
-                      )
-                  }
-                </div>
-              </div> */}
             </Form.Group>
             <Button variant="primary" type="submit">
-              Submit
+              Login
             </Button>
           </Form>
           <Card.Text style={{ fontSize: "16px", marginTop: "10px" }}>

@@ -1,14 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProductsThunk } from "../store/slices/products.slice";
-import { Button, Card, Carousel, Col, Row, ButtonGroup } from "react-bootstrap";
+import {
+  Button,
+  Card,
+  Carousel,
+  Col,
+  Row,
+  ButtonGroup,
+  Container,
+} from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
-
 
 const ProductDetail = () => {
   const allProducts = useSelector((state) => state.products);
   const [productDetail, setProductDetail] = useState({});
   const [suggestedProducts, setSuggestedProducts] = useState([]);
+
+  const [ quantityCart, setQuantityCart ] = useState(1)
 
   const navigate = useNavigate();
 
@@ -16,15 +25,28 @@ const ProductDetail = () => {
 
   const dispatch = useDispatch();
 
-  const [ counter, setCounter ] = useState(1)
+  const [counter, setCounter] = useState(1);
 
   const increment = () => {
-    setCounter(counter+1)
-    
-  }
+    setCounter(counter + 1);
+  };
   const decrement = () => {
-    setCounter(counter-1)
+    setCounter(counter - 1);
+  };
+
+  const addToCart = () => {
+    alert("Añadiendo a cart")
+    const cart = {
+      id: productDetail.id,
+      quantity: quantityCart
+    }
   }
+
+  
+
+
+
+
 
   useEffect(() => {
     const productsFound = allProducts.find(
@@ -41,7 +63,6 @@ const ProductDetail = () => {
   useEffect(() => {
     dispatch(getProductsThunk());
   }, []);
-
 
   return (
     <div>
@@ -76,53 +97,63 @@ const ProductDetail = () => {
         </Col>
         <Col>
           <h1>{productDetail?.title}</h1>
-          {/* <h4>Description</h4> */}
-          <p style={{textAlign: "justify"}}>{productDetail?.description}</p>
+          <p style={{ textAlign: "justify" }}>{productDetail?.description}</p>
           <div className="container-price">
             <div>
-              <small  className="small-txt">Price: </small>
+              <small className="small-txt">Price: </small>
               <div>
-                $ {productDetail?.price}
+                <strong>$ {productDetail?.price}</strong>
               </div>
             </div>
             <div className="quantity-btn">
               <small className="small-txt">Quantity</small>
               <div>
                 <ButtonGroup size="sm">
-                  <Button 
-                  style={{fontSize: "18px"}}
-                  onClick={decrement}
-                  > 
-                    <i className='bx bx-minus'></i> 
+                  <Button
+                    disabled={counter === 1}
+                    style={{ fontSize: "18px" }}
+                    onClick={decrement}
+                  >
+                    <i className="bx bx-minus"></i>
                   </Button>
                   <div className="quantity-box">
-                    <small>
-                      {counter}
-                    </small>
+                    <small>{counter}</small>
                   </div>
-                  <Button 
-                  style={{fontSize: "18px"}}
-                  onClick={increment}
-                  > 
-                    <i className='bx bx-plus'></i> 
+                  <Button style={{ fontSize: "18px" }} onClick={increment}>
+                    <i className="bx bx-plus"></i>
                   </Button>
                 </ButtonGroup>
               </div>
             </div>
           </div>
+
+
+          <div className="d-grid gap-2 btn-add-product">
+            <Button 
+            onClick={addToCart} 
+            size="lg" 
+            style={{display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", gap: "10px"}}
+            >
+              Add to Cart <i className='bx bxs-cart-add add-cart-icon'></i>
+            </Button>
+          </div>
+
+
+
+
         </Col>
       </Row>
-      <div>
-        <div>
+      <div style={{ marginTop: "60px" }}>
+        <div style={{ marginBottom: "20px" }}>
           <h4>Suggested Products</h4>
         </div>
         <div>
-        <Row xs={1} md={3} className="g-4">
+          <Row xs={1} md={3} className="g-4">
             {suggestedProducts.map((product) => (
               <Col key={product.id}>
                 <Card
                   onClick={() => navigate(`/products/${product.id}`)}
-                  style={{ cursor: "pointer", minHeight: "360px"}}
+                  style={{ cursor: "pointer", minHeight: "360px" }}
                 >
                   <Card.Img
                     variant="top"

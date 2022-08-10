@@ -49,7 +49,7 @@ const Home = () => {
     <div>
       <Row>
         <Col lg={3}>
-          <Accordion defaultActiveKey="0" style={{margin: "10px 0"}}>
+          <Accordion defaultActiveKey="0" style={{marginBottom: "10px"}}>
             <Accordion.Item eventKey="0">
               <Accordion.Header>Price</Accordion.Header>
               <Accordion.Body>
@@ -115,6 +115,10 @@ const Home = () => {
               Search
             </Button>
           </InputGroup>
+
+
+
+          
           <Row xs={1} md={3} className="g-4">
             {products.map((product) => (
               <Col key={product.id}>
