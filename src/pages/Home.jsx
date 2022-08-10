@@ -55,15 +55,15 @@ const Home = () => {
               <Accordion.Body>
                 <InputGroup className="mb-3">
                 <Form.Label htmlFor="basic-url" style={{width: "50px"}}>From</Form.Label>
-                  <InputGroup.Text>$</InputGroup.Text>
+                  <InputGroup.Text className="hide-labels">$</InputGroup.Text>
                   <Form.Control aria-label="Amount (to the nearest dollar)" />
-                  <InputGroup.Text>.00</InputGroup.Text>
+                  <InputGroup.Text className="hide-labels">.00</InputGroup.Text>
                 </InputGroup>
                 <InputGroup className="mb-3">
                 <Form.Label htmlFor="basic-url" style={{width: "50px"}}>To</Form.Label>
-                  <InputGroup.Text>$</InputGroup.Text>
+                  <InputGroup.Text className="hide-labels">$</InputGroup.Text>
                   <Form.Control aria-label="Amount (to the nearest dollar)" />
-                  <InputGroup.Text>.00</InputGroup.Text>
+                  <InputGroup.Text className="hide-labels">.00</InputGroup.Text>
                 </InputGroup>
                 <div className="filter-btn">
                   <button type="button" className="btn btn-primary">Filter price</button>

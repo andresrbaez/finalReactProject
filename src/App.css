@@ -292,5 +292,11 @@
   .input-search{
     margin-top: 15px;
   }
+}
+@media (max-width: 509px) {
+  .hide-labels{
+    position: absolute;
+    left: 1000000px;
+  }
 
 }
