@@ -43,12 +43,12 @@ const Home = () => {
       .then((res) => setCategories(res.data.data.categories));
   }, []);
 
-  console.log(products[0]?.productImgs[1]);
+  // console.log(products[0]?.productImgs[1]);
 
   return (
     <div>
       <Row>
-        <Col lg={3}>
+        <Col lg={3} className="accordions">
           <Accordion defaultActiveKey="0" style={{marginBottom: "10px"}}>
             <Accordion.Item eventKey="0">
               <Accordion.Header>Price</Accordion.Header>
@@ -71,7 +71,7 @@ const Home = () => {
               </Accordion.Body>
             </Accordion.Item>
           </Accordion>
-          <Accordion defaultActiveKey="0" style={{margin: "10px 0"}}>
+          <Accordion defaultActiveKey="0" className="categories-accordion">
             <Accordion.Item eventKey="0">
               <Accordion.Header>Categories</Accordion.Header>
               <Accordion.Body>
@@ -98,7 +98,7 @@ const Home = () => {
         </Col>
 
         <Col>
-          <InputGroup className="mb-3">
+          <InputGroup className="mb-3 input-search">
             <Form.Control
               placeholder="What are you looking for?"
               aria-label="What are you looking for?"
@@ -118,7 +118,7 @@ const Home = () => {
 
 
 
-          
+
           <Row xs={1} md={3} className="g-4">
             {products.map((product) => (
               <Col key={product.id}>

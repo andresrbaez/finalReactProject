@@ -15,7 +15,15 @@ const Cart = ({ show, handleClose }) => {
     dispatch(getCartThunk());
   }, []);
 
-//   console.log(cart);
+//   iteration to add product values
+  const totalCart = () => {
+    let total = 0
+    for (let i=0; i<cart.length; i++){
+        total += parseInt(cart[i].price)
+    }
+    return total
+  }
+  
 
   return (
     <>
@@ -42,7 +50,7 @@ const Cart = ({ show, handleClose }) => {
                                     <b>{cartSide.productsInCart.quantity}</b>
                                 </div>
                                 <div>
-                                    <small className="total-cart-item">Total: </small> <b>{cartSide.price}</b>
+                                    <small className="total-cart-item">Total: </small> <b>{Number(cartSide.price)}</b>
                                 </div>
                             </div>
 
@@ -56,7 +64,7 @@ const Cart = ({ show, handleClose }) => {
         </Offcanvas.Body>
         <div className="footer-cart">
                 <div className="total-cart">
-                    <p>Total: </p> <b>$000</b>
+                    <p>Total: </p> <b>${totalCart()}</b>
                 </div>
                 <div className="d-grid gap-2">
                 <Button

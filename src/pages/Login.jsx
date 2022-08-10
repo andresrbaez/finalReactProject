@@ -13,11 +13,9 @@ const Login = () => {
 
   const toggleIsVisible = () => setIsVisible(!isVisible);
 
-  // const [modalShow, setModalShow] = React.useState(false);
+  const [modalShow, setModalShow] = React.useState(false);
 
   const submit = (data, props) => {
-    // alert("Hice submit")
-    // console.log(data);
     axios
       .post(
         `https://ecommerce-api-react.herokuapp.com/api/v1/users/login`,
@@ -34,7 +32,7 @@ const Login = () => {
           // return (
           //   <>
           //     <Modal
-          //       {...props}
+          //       modalShow={modalShow}
           //       size="lg"
           //       aria-labelledby="contained-modal-title-vcenter"
           //       centered

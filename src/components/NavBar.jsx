@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Container, Nav, Navbar, Offcanvas, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import Cart from "./Cart";
+import cartImg from '../images/cart.png'
 
 const NavBar = () => {
   const navigate = useNavigate();
@@ -31,7 +32,7 @@ const NavBar = () => {
       <Navbar bg="primary" variant="dark" expand="lg">
         <Container>
           <Navbar.Brand href="/#/">
-            <img src="./src/images/cart.png" className="img-store" alt="" />{" "}
+            <img src={cartImg} className="img-store" alt="" />{" "}
             Store App
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />

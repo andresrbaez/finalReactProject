@@ -168,7 +168,8 @@
   width: auto;
 }
 .purchases-cards{
-  width: 700px;
+  max-width: 700px;
+  width: 100%;
 }
 .purchases-space{
   display: flex;
@@ -176,8 +177,9 @@
   align-items: center;
 }
 .purchases-title{
-  width: 700px;
+  max-width: 700px;
   margin-bottom: 20px;
+  width: 100%;
 }
 .circle-font{
   font-size: 7px;
@@ -270,3 +272,25 @@
   align-items: center;
 }
 /* End footer zone */
+
+.categories-accordion{
+  margin: 10px 0;
+}
+
+
+
+@media (max-width: 991px) {
+  .accordions{
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+  }
+  .categories-accordion{
+    margin: 0;
+  }
+  .input-search{
+    margin-top: 15px;
+  }
+
+}
