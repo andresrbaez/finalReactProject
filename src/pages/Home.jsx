@@ -17,12 +17,14 @@ import {
   Accordion,
 } from "react-bootstrap";
 import axios from "axios";
+import { addProductsThunk } from "../store/slices/cart.slice";
 
 const Home = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [searchValue, setSearchValue] = useState("");
   const [categories, setCategories] = useState([]);
+  // const [productDetail, setProductDetail] = useState({});
 
 
   const products = useSelector((state) => state.products);
@@ -31,6 +33,19 @@ const Home = () => {
     dispatch(filterProductThunk(searchValue));
     setSearchValue("")
   }
+
+  const addToCart = (id) => {
+    alert("Añadiendo a cart")
+    const cart = {
+      id: id,
+      quantity: 1
+    }
+    dispatch(addProductsThunk(cart))
+  }
+
+
+
+
 
   useEffect(() => {
     dispatch(getProductsThunk());
@@ -123,15 +138,16 @@ const Home = () => {
             {products.map((product) => (
               <Col key={product.id}>
                 <Card
-                  onClick={() => navigate(`/products/${product.id}`)}
-                  style={{ cursor: "pointer", minHeight: "360px" }}
+                  style={{ minHeight: "360px" }}
                 >
                   <Card.Img
+                    onClick={() => navigate(`/products/${product.id}`)}
                     variant="top"
                     src={product.productImgs}
                     className="img-products"
                   />
                   <Card.Img
+                    onClick={() => navigate(`/products/${product.id}`)}
                     variant="top"
                     src={product.productImgs[1]}
                     className="img-products-hover"
@@ -139,7 +155,11 @@ const Home = () => {
                   <Card.Body>
                     <Card.Title>{product.title}</Card.Title>
                     <Card.Text>Price: ${product.price}</Card.Text>
-                    <button className="add-cart-btn">
+                    <button 
+                    onClick={() => addToCart(product.id)}
+              
+                    className="add-cart-btn"
+                    >
                       <i
                         className="bx bxs-cart icon-nav"
                         style={{ color: "#ffffff" }}

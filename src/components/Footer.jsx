@@ -18,7 +18,7 @@ const Footer = () => {
                     </div>
                 </a>
                 <a 
-                href="https://www.linkedin.com/school/academlo/" 
+                href="https://www.linkedin.com/in/andresrbaez/" 
                 target="_blank"
                 className='a-decoration'
                 >

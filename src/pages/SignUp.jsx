@@ -1,10 +1,13 @@
 import axios from "axios";
-import React from "react";
-import { Card, Button, Form } from "react-bootstrap";
+import React, { useState } from "react";
+import { Card, Button, Form, InputGroup } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 
 const SignUp = () => {
   const { register, handleSubmit } = useForm();
+  const [isVisible, setIsVisible] = useState(false);
+
+  const toggleIsVisible = () => setIsVisible(!isVisible);
 
 
 
@@ -12,8 +15,8 @@ const SignUp = () => {
     axios.post(`https://ecommerce-api-react.herokuapp.com/api/v1/users`, data)
       .then((res) => {
         navigate("/");
-        localStorage.setItem("token", res.data.data.token);
-        console.log(res.data.data.token);
+        // localStorage.setItem("token", res.data.data.token);
+        console.log(res.data.data);
       })
       .catch(error => console.error(error.response))
 
@@ -52,7 +55,29 @@ const SignUp = () => {
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
               <Form.Label>Password</Form.Label>
-              <Form.Control type="password" {...register("password")}/>
+              <InputGroup className="mb-3">
+                <Form.Control
+                  type={isVisible ? "text" : "password"}
+                  placeholder="Password"
+                  {...register("password")}
+                />
+                <InputGroup.Text 
+                id="basic-addon2" 
+                onClick={toggleIsVisible} 
+                style={{cursor: "pointer", backgroundColor: "white", color: "gray"}}
+                >
+                  <div
+                    type="checkbox"
+                    className="toggle-password"
+                  >
+                    {isVisible === false ? (
+                      <i className="bx bx-show icon-password"></i>
+                    ) : (
+                      <i className="bx bx-hide icon-password"></i>
+                    )}
+                  </div>
+                </InputGroup.Text>
+              </InputGroup>
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Phone (10 characters)</Form.Label>

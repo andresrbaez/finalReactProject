@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button, Offcanvas } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getCartThunk } from "../store/slices/cart.slice";
+import { buyCartThunk, deleteProductThunk, getCartThunk } from "../store/slices/cart.slice";
 
 const Cart = ({ show, handleClose }) => {
   const cart = useSelector((state) => state.cart);
@@ -23,6 +23,11 @@ const Cart = ({ show, handleClose }) => {
     }
     return total
   }
+
+  const deleteFromCart = (productId) => {
+    alert("Borraste el producto")
+    dispatch(deleteProductThunk(productId))
+  }
   
 
   return (
@@ -39,7 +44,15 @@ const Cart = ({ show, handleClose }) => {
                         <li key={cartSide.id} 
                         className="list-cart" 
                         >
-                            <small>{cartSide.brand}</small>
+                            <div className="cart-delete">
+                                <div>
+                                    <small>{cartSide.brand}</small>
+                                </div>
+                                <div>
+                                    <i className='bx bx-trash icon-cart' onClick={() => dispatch(deleteProductThunk(cartSide.id))}></i>
+                                </div>
+                            </div>
+
                             <p 
                             className="p-cart"
                             style={{cursor: "pointer"}}
@@ -67,9 +80,8 @@ const Cart = ({ show, handleClose }) => {
                     <p>Total: </p> <b>${totalCart()}</b>
                 </div>
                 <div className="d-grid gap-2">
-                <Button
-                    size="lg"
-                >
+                <Button size="lg"
+                onClick={() => dispatch(buyCartThunk())}>
                     Checkout
                 </Button>
                 </div>

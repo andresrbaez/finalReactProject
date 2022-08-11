@@ -11,13 +11,14 @@ import {
   Container,
 } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
+import { addProductsThunk, deleteProductThunk } from "../store/slices/cart.slice";
 
 const ProductDetail = () => {
   const allProducts = useSelector((state) => state.products);
   const [productDetail, setProductDetail] = useState({});
   const [suggestedProducts, setSuggestedProducts] = useState([]);
 
-  const [ quantityCart, setQuantityCart ] = useState(1)
+  // const [ quantityCart, setQuantityCart ] = useState(1)
 
   const navigate = useNavigate();
 
@@ -34,13 +35,23 @@ const ProductDetail = () => {
     setCounter(counter - 1);
   };
 
-  const addToCart = () => {
+  const addToCart = (id) => {
     alert("Añadiendo a cart")
     const cart = {
       id: productDetail.id,
-      quantity: quantityCart
+      quantity: counter
     }
+    dispatch(addProductsThunk(cart))
   }
+  const suggestedAddToCart = (id) => {
+    alert("Añadiendo a cart")
+    const cart = {
+      id: id,
+      quantity: 1
+    }
+    dispatch(addProductsThunk(cart))
+  }
+
 
   
 
@@ -152,15 +163,16 @@ const ProductDetail = () => {
             {suggestedProducts.map((product) => (
               <Col key={product.id}>
                 <Card
-                  onClick={() => navigate(`/products/${product.id}`)}
-                  style={{ cursor: "pointer", minHeight: "360px" }}
+                  style={{ minHeight: "360px" }}
                 >
                   <Card.Img
+                    onClick={() => navigate(`/products/${product.id}`)}
                     variant="top"
                     src={product.productImgs}
                     className="img-products"
                   />
                   <Card.Img
+                    onClick={() => navigate(`/products/${product.id}`)}
                     variant="top"
                     src={product.productImgs[1]}
                     className="img-products-hover"
@@ -168,7 +180,10 @@ const ProductDetail = () => {
                   <Card.Body>
                     <Card.Title>{product.title}</Card.Title>
                     <Card.Text>Price: ${product.price}</Card.Text>
-                    <button className="add-cart-btn">
+                    <button 
+                    onClick={() => suggestedAddToCart(product.id)}
+                    className="add-cart-btn"
+                    >
                       <i
                         className="bx bxs-cart icon-nav"
                         style={{ color: "#ffffff" }}
