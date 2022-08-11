@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Card, Button, Form, Modal, InputGroup } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import denied from '../images/close.png'
 
 const Login = () => {
   const { register, handleSubmit, reset } = useForm();
@@ -124,20 +125,18 @@ const Login = () => {
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            Modal heading
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <h4>Centered Modal</h4>
-          <p>
-            Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-            dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta
-            ac consectetur ac, vestibulum at eros.
-          </p>
+          <div className="container-modal">
+            <div className="img-container">
+              <img src={denied} className="img-modal" alt="" />
+            </div>
+            <h4>
+              Invalid credentials! Try again.
+            </h4>
+          </div>
         </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={() => setModalShow(false)}>Close</Button>
-        </Modal.Footer>
       </Modal>
     </div>
     // <div>
