@@ -352,6 +352,32 @@
 
 
 
+
+
+
+
+
+
+
+.product-title{
+  width: 65%;
+  margin-left: 85px;
+}
+.product-price{
+  width: 15%;
+}
+@media (max-width: 370px) {
+  .product-title{
+    margin-left: 10px;
+  }
+}
+@media (max-width: 767px) {
+  .product-price{
+    width: 25%;
+    margin-left: 10px;
+  }
+}
+
 @media (max-width: 991px) {
   .accordions{
     display: grid;

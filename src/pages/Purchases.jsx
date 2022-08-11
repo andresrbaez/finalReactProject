@@ -49,13 +49,13 @@ const Purchases = () => {
                             purchase.cart.products.map((product) => (
                                 <Card.Body key={product.id} style={{padding: "15px"}}>
                                 <div className="purchases-info">
-                                    <div style={{width: "65%", marginLeft: "85px"}}>
+                                    <div className="product-title">
                                     <Card.Text>
                                         {product.title}
                                     </Card.Text>
                                     </div>
                                     <div style={{width: "20%"}}>
-                                        <Card style={{width: "45px", height: "45px", display: "flex", flexDirection: "column", justifyContent: "center"}}>
+                                        <Card style={{width: "53px", height: "45px", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}>
                                             <Card.Body>
                                                 <Card.Text>
                                                     {product.productsInCart.quantity}
@@ -63,9 +63,9 @@ const Purchases = () => {
                                             </Card.Body>
                                         </Card>
                                     </div>
-                                    <div style={{width: "15%"}}>
+                                    <div className="product-price">
                                         <Card.Text>
-                                            <b>$ {product.price}</b>
+                                            <b>$ {parseInt(product.price)}</b>
                                         </Card.Text>
                                     </div>
                                 </div>
