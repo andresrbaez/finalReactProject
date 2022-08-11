@@ -190,7 +190,10 @@ const Home = () => {
                   />
                   <Card.Body>
                     <Card.Title>{product.title}</Card.Title>
-                    <Card.Text>Price: ${product.price}</Card.Text>
+                    <div>
+                      <small style={{color: "#b9acacca"}}>Price</small>
+                      <Card.Text><b>${product.price}</b></Card.Text>
+                    </div>
                     <button 
                     onClick={() => addToCart(product.id)}
               
