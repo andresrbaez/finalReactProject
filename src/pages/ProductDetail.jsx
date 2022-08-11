@@ -12,6 +12,7 @@ import {
 } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import { addProductsThunk, deleteProductThunk } from "../store/slices/cart.slice";
+import { setIsLoading } from "../store/slices/isLoading.slice";
 
 const ProductDetail = () => {
   const allProducts = useSelector((state) => state.products);
@@ -36,7 +37,6 @@ const ProductDetail = () => {
   };
 
   const addToCart = (id) => {
-    alert("Añadiendo a cart")
     const cart = {
       id: productDetail.id,
       quantity: counter
@@ -44,13 +44,20 @@ const ProductDetail = () => {
     dispatch(addProductsThunk(cart))
   }
   const suggestedAddToCart = (id) => {
-    alert("Añadiendo a cart")
     const cart = {
       id: id,
       quantity: 1
     }
     dispatch(addProductsThunk(cart))
   }
+
+
+
+  // const suggestedNavigate = () => {
+  //   dispatch(setIsLoading(true));
+  //   navigate(`/products/${productDetail.id}`)
+
+  // }
 
 
   
@@ -141,7 +148,7 @@ const ProductDetail = () => {
 
           <div className="d-grid gap-2 btn-add-product">
             <Button 
-            onClick={addToCart} 
+            onClick={() => addToCart(productDetail?.id)} 
             size="lg" 
             style={{display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", gap: "10px"}}
             >
@@ -167,12 +174,14 @@ const ProductDetail = () => {
                 >
                   <Card.Img
                     onClick={() => navigate(`/products/${product.id}`)}
+                    // onClick={() => suggestedNavigate()}
                     variant="top"
                     src={product.productImgs}
                     className="img-products"
                   />
                   <Card.Img
                     onClick={() => navigate(`/products/${product.id}`)}
+                    // onClick={() => suggestedNavigate()}
                     variant="top"
                     src={product.productImgs[1]}
                     className="img-products-hover"
@@ -186,6 +195,14 @@ const ProductDetail = () => {
                     >
                       <i
                         className="bx bxs-cart icon-nav"
+                        style={{ color: "#ffffff" }}
+                      ></i>
+                    </button>
+                    <button 
+                    onClick={() => suggestedAddToCart(product.id)}
+                    className="add-cart-btn-hover"
+                    >
+                      <i className='bx bx-cart-add icon-nav-hover' 
                         style={{ color: "#ffffff" }}
                       ></i>
                     </button>

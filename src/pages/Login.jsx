@@ -13,9 +13,9 @@ const Login = () => {
 
   const toggleIsVisible = () => setIsVisible(!isVisible);
 
-  const [modalShow, setModalShow] = React.useState(false);
-
-  const submit = (data, props) => {
+  const [modalShow, setModalShow] = useState(false);
+  
+  const submit = (data) => {
     axios
       .post(
         `https://ecommerce-api-react.herokuapp.com/api/v1/users/login`,
@@ -28,34 +28,34 @@ const Login = () => {
       })
       .catch((error) => {
         if (error.response.status === 404) {
-          alert("Credenciales inválidas");
-          // return (
-          //   <>
-          //     <Modal
-          //       modalShow={modalShow}
-          //       size="lg"
-          //       aria-labelledby="contained-modal-title-vcenter"
-          //       centered
-          //     >
-          //       <Modal.Header closeButton>
-          //         <Modal.Title id="contained-modal-title-vcenter">
-          //           Modal heading
-          //         </Modal.Title>
-          //       </Modal.Header>
-          //       <Modal.Body>
-          //         <h4>Centered Modal</h4>
-          //         <p>
-          //           Cras mattis consectetur purus sit amet fermentum. Cras justo
-          //           odio, dapibus ac facilisis in, egestas eget quam. Morbi leo
-          //           risus, porta ac consectetur ac, vestibulum at eros.
-          //         </p>
-          //       </Modal.Body>
-          //       <Modal.Footer>
-          //         <Button onClick={props.onHide}>Close</Button>
-          //       </Modal.Footer>
-          //     </Modal>
-          //   </>
-          // );
+          // alert("Credenciales inválidas");
+          return (
+            <>
+              <Modal
+                modalShow={modalShow}
+                size="lg"
+                aria-labelledby="contained-modal-title-vcenter"
+                centered
+              >
+                <Modal.Header closeButton>
+                  <Modal.Title id="contained-modal-title-vcenter">
+                    Modal heading
+                  </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                  <h4>Centered Modal</h4>
+                  <p>
+                    Cras mattis consectetur purus sit amet fermentum. Cras justo
+                    odio, dapibus ac facilisis in, egestas eget quam. Morbi leo
+                    risus, porta ac consectetur ac, vestibulum at eros.
+                  </p>
+                </Modal.Body>
+                <Modal.Footer>
+                  <Button onClick={modalShow.onHide}>Close</Button>
+                </Modal.Footer>
+              </Modal>
+            </>
+          );
         }
       });
     reset({
@@ -127,7 +127,7 @@ const Login = () => {
                 </InputGroup.Text>
               </InputGroup>
             </Form.Group>
-            <Button variant="primary" type="submit">
+            <Button variant="primary" type="submit" onClick={() => setModalShow(true)}>
               Login
             </Button>
           </Form>

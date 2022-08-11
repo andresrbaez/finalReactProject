@@ -19,7 +19,7 @@ const Cart = ({ show, handleClose }) => {
   const totalCart = () => {
     let total = 0
     for (let i=0; i<cart.length; i++){
-        total += parseInt(cart[i].price)
+        total += parseInt((cart[i].price)*(cart[i].productsInCart.quantity))
     }
     return total
   }
@@ -28,6 +28,7 @@ const Cart = ({ show, handleClose }) => {
     alert("Borraste el producto")
     dispatch(deleteProductThunk(productId))
   }
+
   
 
   return (

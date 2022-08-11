@@ -35,17 +35,12 @@ const Home = () => {
   }
 
   const addToCart = (id) => {
-    alert("Añadiendo a cart")
     const cart = {
       id: id,
       quantity: 1
     }
     dispatch(addProductsThunk(cart))
   }
-
-
-
-
 
   useEffect(() => {
     dispatch(getProductsThunk());
@@ -58,12 +53,25 @@ const Home = () => {
       .then((res) => setCategories(res.data.data.categories));
   }, []);
 
-  // console.log(products[0]?.productImgs[1]);
+
+
+
+  // const filterPriceProduct = () => {
+  //   products.map(product => (
+  //     console.log(product?.price)
+  //     ))
+  // }
+
+  // console.log(products[0]?.price);
+
 
   return (
     <div>
       <Row>
         <Col lg={3} className="accordions">
+
+
+
           <Accordion defaultActiveKey="0" style={{marginBottom: "10px"}}>
             <Accordion.Item eventKey="0">
               <Accordion.Header>Price</Accordion.Header>
@@ -86,6 +94,10 @@ const Home = () => {
               </Accordion.Body>
             </Accordion.Item>
           </Accordion>
+
+
+
+
           <Accordion defaultActiveKey="0" className="categories-accordion">
             <Accordion.Item eventKey="0">
               <Accordion.Header>Categories</Accordion.Header>
@@ -111,6 +123,8 @@ const Home = () => {
             </Accordion.Item>
           </Accordion>
         </Col>
+
+
 
         <Col>
           <InputGroup className="mb-3 input-search">
@@ -162,6 +176,15 @@ const Home = () => {
                     >
                       <i
                         className="bx bxs-cart icon-nav"
+                        style={{ color: "#ffffff" }}
+                      ></i>
+                    </button>
+                    <button 
+                    onClick={() => addToCart(product.id)}
+              
+                    className="add-cart-btn-hover"
+                    >
+                      <i className='bx bx-cart-add icon-nav-hover' 
                         style={{ color: "#ffffff" }}
                       ></i>
                     </button>
