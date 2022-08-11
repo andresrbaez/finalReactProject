@@ -187,8 +187,11 @@ const ProductDetail = () => {
                     className="img-products-hover"
                   />
                   <Card.Body>
-                    <Card.Title>{product.title}</Card.Title>
-                    <Card.Text>Price: ${product.price}</Card.Text>
+                  <Card.Title>{product.title}</Card.Title>
+                    <div>
+                      <small style={{color: "#b9acacca"}}>Price</small>
+                      <Card.Text><b>$ {product.price}</b></Card.Text>
+                    </div>
                     <button 
                     onClick={() => suggestedAddToCart(product.id)}
                     className="add-cart-btn"

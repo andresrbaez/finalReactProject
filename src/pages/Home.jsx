@@ -192,7 +192,7 @@ const Home = () => {
                     <Card.Title>{product.title}</Card.Title>
                     <div>
                       <small style={{color: "#b9acacca"}}>Price</small>
-                      <Card.Text><b>${product.price}</b></Card.Text>
+                      <Card.Text><b>$ {product.price}</b></Card.Text>
                     </div>
                     <button 
                     onClick={() => addToCart(product.id)}
