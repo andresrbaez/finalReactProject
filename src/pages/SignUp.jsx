@@ -2,30 +2,30 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Card, Button, Form, InputGroup } from "react-bootstrap";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
   const { register, handleSubmit } = useForm();
   const [isVisible, setIsVisible] = useState(false);
+  const navigate = useNavigate()
 
   const toggleIsVisible = () => setIsVisible(!isVisible);
-
-
 
   const submit = (data) => {
     axios.post(`https://ecommerce-api-react.herokuapp.com/api/v1/users`, data)
       .then((res) => {
         navigate("/");
-        // localStorage.setItem("token", res.data.data.token);
         console.log(res.data.data);
       })
-      .catch(error => console.error(error.response))
+      .catch(error => console.error(error))
 
-      // reset({
-      //   email: "",
-      //   text: "",
-      //   password: "",
-      //   tel: ""
-      // });
+      reset({
+        email: "",
+        firstName: "",
+        lastName: "",
+        password: "",
+        phone: ""
+      });
     }
 
 

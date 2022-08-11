@@ -17,7 +17,12 @@ export const purchasesSlice = createSlice({
 export const getPurchasesThunk = () => (dispatch) => {
     dispatch(setIsLoading(true));
     return axios.get(`https://ecommerce-api-react.herokuapp.com/api/v1/purchases`, getConfig())
-        .then((res) => dispatch(setPurchases(res.data.data.purchases)))
+        .then((res) => {
+            const sortedPurchases = res.data.data.purchases.sort(function(a,b){
+                return new Date(b.createdAt) - new Date(a.createdAt);
+              })
+            dispatch(setPurchases(sortedPurchases))
+        })
         .finally(() => dispatch(setIsLoading(false)));
 }
 

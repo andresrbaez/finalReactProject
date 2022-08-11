@@ -14,7 +14,7 @@ const Login = () => {
   const toggleIsVisible = () => setIsVisible(!isVisible);
 
   const [modalShow, setModalShow] = useState(false);
-  
+
   const submit = (data) => {
     axios
       .post(
@@ -28,34 +28,7 @@ const Login = () => {
       })
       .catch((error) => {
         if (error.response.status === 404) {
-          // alert("Credenciales inválidas");
-          return (
-            <>
-              <Modal
-                modalShow={modalShow}
-                size="lg"
-                aria-labelledby="contained-modal-title-vcenter"
-                centered
-              >
-                <Modal.Header closeButton>
-                  <Modal.Title id="contained-modal-title-vcenter">
-                    Modal heading
-                  </Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                  <h4>Centered Modal</h4>
-                  <p>
-                    Cras mattis consectetur purus sit amet fermentum. Cras justo
-                    odio, dapibus ac facilisis in, egestas eget quam. Morbi leo
-                    risus, porta ac consectetur ac, vestibulum at eros.
-                  </p>
-                </Modal.Body>
-                <Modal.Footer>
-                  <Button onClick={modalShow.onHide}>Close</Button>
-                </Modal.Footer>
-              </Modal>
-            </>
-          );
+          setModalShow(true)
         }
       });
     reset({
@@ -109,15 +82,16 @@ const Login = () => {
                   placeholder="Password"
                   {...register("password")}
                 />
-                <InputGroup.Text 
-                id="basic-addon2" 
-                onClick={toggleIsVisible} 
-                style={{cursor: "pointer", backgroundColor: "white", color: "gray"}}
+                <InputGroup.Text
+                  id="basic-addon2"
+                  onClick={toggleIsVisible}
+                  style={{
+                    cursor: "pointer",
+                    backgroundColor: "white",
+                    color: "gray",
+                  }}
                 >
-                  <div
-                    type="checkbox"
-                    className="toggle-password"
-                  >
+                  <div type="checkbox" className="toggle-password">
                     {isVisible === false ? (
                       <i className="bx bx-show icon-password"></i>
                     ) : (
@@ -127,7 +101,10 @@ const Login = () => {
                 </InputGroup.Text>
               </InputGroup>
             </Form.Group>
-            <Button variant="primary" type="submit" onClick={() => setModalShow(true)}>
+            <Button
+              variant="primary"
+              type="submit"
+            >
               Login
             </Button>
           </Form>
@@ -137,6 +114,31 @@ const Login = () => {
           </Card.Text>
         </Card.Body>
       </Card>
+
+      <Modal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="contained-modal-title-vcenter">
+            Modal heading
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <h4>Centered Modal</h4>
+          <p>
+            Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
+            dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta
+            ac consectetur ac, vestibulum at eros.
+          </p>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={() => setModalShow(false)}>Close</Button>
+        </Modal.Footer>
+      </Modal>
     </div>
     // <div>
     //     <h1>Login</h1>

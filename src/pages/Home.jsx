@@ -18,6 +18,7 @@ import {
 } from "react-bootstrap";
 import axios from "axios";
 import { addProductsThunk } from "../store/slices/cart.slice";
+import { setIsLoading } from "../store/slices/isLoading.slice";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -54,15 +55,28 @@ const Home = () => {
   }, []);
 
 
+  const [fromInput, setFromInput] = useState("");
+  const [toInput, setToInput] = useState("");
+  const [filteredProducts, setFilteredProducts] = useState([])
+
+  useEffect(() => {
+    setFilteredProducts(products)
+  }, [products]);
 
 
-  // const filterPriceProduct = () => {
-  //   products.map(product => (
-  //     console.log(product?.price)
-  //     ))
-  // }
+  const filterPriceProduct = () => {
+    
+    const filter = products.filter(product => product?.price >= parseInt(fromInput) && product?.price <= parseInt(toInput) )
+
+    setFilteredProducts(filter)
+
+  }
 
   // console.log(products[0]?.price);
+
+
+
+
 
 
   return (
@@ -79,17 +93,25 @@ const Home = () => {
                 <InputGroup className="mb-3">
                 <Form.Label htmlFor="basic-url" style={{width: "50px"}}>From</Form.Label>
                   <InputGroup.Text className="hide-labels">$</InputGroup.Text>
-                  <Form.Control aria-label="Amount (to the nearest dollar)" />
+                  <Form.Control 
+                  aria-label="Amount (to the nearest dollar)" 
+                  onChange={(e) => setFromInput(e.target.value)}
+                  value={fromInput}
+                  />
                   <InputGroup.Text className="hide-labels">.00</InputGroup.Text>
                 </InputGroup>
                 <InputGroup className="mb-3">
                 <Form.Label htmlFor="basic-url" style={{width: "50px"}}>To</Form.Label>
                   <InputGroup.Text className="hide-labels">$</InputGroup.Text>
-                  <Form.Control aria-label="Amount (to the nearest dollar)" />
+                  <Form.Control 
+                  aria-label="Amount (to the nearest dollar)" 
+                  onChange={(e) => setToInput(e.target.value)}
+                  value={toInput}
+                  />
                   <InputGroup.Text className="hide-labels">.00</InputGroup.Text>
                 </InputGroup>
                 <div className="filter-btn">
-                  <button type="button" className="btn btn-primary">Filter price</button>
+                  <button type="button" className="btn btn-primary" onClick={filterPriceProduct}>Filter price</button>
                 </div>
               </Accordion.Body>
             </Accordion.Item>
@@ -149,7 +171,7 @@ const Home = () => {
 
 
           <Row xs={1} md={3} className="g-4">
-            {products.map((product) => (
+            {filteredProducts.map((product) => (
               <Col key={product.id}>
                 <Card
                   style={{ minHeight: "360px" }}
