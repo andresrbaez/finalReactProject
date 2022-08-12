@@ -19,13 +19,13 @@ import {
 import axios from "axios";
 import { addProductsThunk } from "../store/slices/cart.slice";
 import { setIsLoading } from "../store/slices/isLoading.slice";
+import { useForm } from "react-hook-form";
 
 const Home = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [searchValue, setSearchValue] = useState("");
   const [categories, setCategories] = useState([]);
-  // const [productDetail, setProductDetail] = useState({});
 
 
   const products = useSelector((state) => state.products);
@@ -69,6 +69,9 @@ const Home = () => {
     const filter = products.filter(product => product?.price >= parseInt(fromInput) && product?.price <= parseInt(toInput) )
 
     setFilteredProducts(filter)
+    setFromInput("")
+    setToInput("")
+
 
   }
 
