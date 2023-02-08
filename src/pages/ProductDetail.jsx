@@ -176,7 +176,7 @@ const ProductDetail = () => {
                     onClick={() => navigate(`/products/${product.id}`)}
                     // onClick={() => suggestedNavigate()}
                     variant="top"
-                    src={product.productImgs}
+                    src={product.productImgs[0]}
                     className="img-products"
                   />
                   <Card.Img

@@ -31,7 +31,7 @@ const NavBar = () => {
       <Cart show={show} handleClose={handleClose}/>
       <Navbar bg="primary" variant="dark" expand="lg">
         <Container>
-          <Navbar.Brand href="/#/">
+          <Navbar.Brand href="/">
             <img src={cartImg} className="img-store" alt="" />{" "}
             Store App
           </Navbar.Brand>

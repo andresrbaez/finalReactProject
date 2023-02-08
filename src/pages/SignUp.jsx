@@ -12,7 +12,7 @@ const SignUp = () => {
   const toggleIsVisible = () => setIsVisible(!isVisible);
 
   const submit = (data) => {
-    axios.post(`https://ecommerce-api-react.herokuapp.com/api/v1/users`, data)
+    axios.post(`https://e-commerce-api.academlo.tech/api/v1/users`, data)
       .then((res) => {
         navigate("/");
         console.log(res.data.data);

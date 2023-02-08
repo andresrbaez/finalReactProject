@@ -49,7 +49,8 @@ const Home = () => {
 
     axios
       .get(
-        "https://ecommerce-api-react.herokuapp.com/api/v1/products/categories"
+        "https://e-commerce-api.academlo.tech/api/v1/products/categories"
+        // "https://ecommerce-api-react.herokuapp.com/api/v1/products/categories"
       )
       .then((res) => setCategories(res.data.data.categories));
   }, []);
@@ -182,7 +183,7 @@ const Home = () => {
                   <Card.Img
                     onClick={() => navigate(`/products/${product.id}`)}
                     variant="top"
-                    src={product.productImgs}
+                    src={product.productImgs[0]}
                     className="img-products"
                   />
                   <Card.Img
